@@ -16,5 +16,15 @@ namespace Specflow.Playground.Services
         {
             return FirstNumber - SecondNumber;
         }
+
+        public int Multiply()
+        {
+            return FirstNumber * SecondNumber;
+        }
+
+        public int Divide()
+        {
+            return FirstNumber / SecondNumber;
+        }
     }
 }

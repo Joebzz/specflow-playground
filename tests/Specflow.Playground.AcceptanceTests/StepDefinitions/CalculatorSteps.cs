@@ -2,7 +2,7 @@
 using Specflow.Playground.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Specflow.Playground.Specs.StepDefinitions
+namespace Specflow.Playground.AcceptanceTests.StepDefinitions
 {
     [Binding]
     public class CalculatorSteps
@@ -32,6 +32,19 @@ namespace Specflow.Playground.Specs.StepDefinitions
         {
             _result = _calculator.Subtract();
         }
+
+        [When(@"I press multiply")]
+        public void WhenIPressMultiply()
+        {
+            _result = _calculator.Multiply();
+        }
+
+        [When(@"I press divide")]
+        public void WhenIPressDivide()
+        {
+            _result = _calculator.Divide();
+        }
+
 
         [Then(@"the result should be '(.*)' on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int expectedResult)

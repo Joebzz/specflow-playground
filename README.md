@@ -1,2 +1,2 @@
 # specflow-playground
-The purpose of this repository is to learn Specflow with Dotnet Core.
+The purpose of this repository is to learn SpecFlow with Dotnet Core.
