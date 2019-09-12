@@ -22,11 +22,12 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
         {
             //_driver = new ChromeDriver(DRIVER_DIR);
             //_driver = new InternetExplorerDriver(DRIVER_DIR);
-            //_driver = new FirefoxDriver(DRIVER_DIR);
 
-            _driver = new EdgeDriver(DRIVER_DIR);
+            _driver = new FirefoxDriver(DRIVER_DIR);
 
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             _driver.Manage().Window.Maximize();
         }
 
@@ -35,7 +36,7 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
         {
             _driver.Navigate().GoToUrl("https://miwidgets.marine.ie/");
         }
-        
+
         [When(@"I look for '(.*)' tag")]
         public void WhenILookForTag(string p0)
         {
@@ -49,6 +50,35 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
             var q = _driver.FindElement(By.ClassName(p0));
             Assert.IsNotNull(q);
         }
+
+        [When(@"I click on a class '(.*)'")]
+        public void WhenIClickOnAClass(string p0)
+        {
+            _driver.FindElement(By.ClassName(p0)).Click();
+        }
+        [Then(@"I should see a '(.*)'")]
+        public void ThenIShouldSeeA(string p0)
+        {
+            _driver.FindElement(By.ClassName(p0)).Click();
+        }
+
+        [When(@"I click on a text '(.*)'")]
+        public void WhenIClickOnAText(string p0)
+        {
+            var layerControl = _driver.FindElement(By.ClassName("leaflet-control-layers-list"));
+            var q = layerControl.FindElement(By.XPath($"//span[text()='{p0}']"));
+
+            Assert.IsNotNull(q);
+            q.Click();
+        }
+
+        [Then(@"I should not see a class with '(.*)'")]
+        public void ThenIShouldNotSeeAClassWith(string p0)
+        {
+            var q = _driver.FindElement(By.ClassName(p0));
+            Assert.IsNull(q);
+        }
+
 
     }
 }
