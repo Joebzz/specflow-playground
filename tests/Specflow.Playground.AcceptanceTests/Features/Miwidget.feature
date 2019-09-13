@@ -1,4 +1,4 @@
-﻿Feature: Miwidget
+﻿Feature: MIWidget
 
 Scenario: Can find mi-dashboard
 	Given I am on the miwidgets page

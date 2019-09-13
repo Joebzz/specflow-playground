@@ -11,21 +11,18 @@ using TechTalk.SpecFlow;
 namespace Specflow.Playground.AcceptanceTests.StepDefinitions
 {
     [Binding]
-    public class MiwidgetSteps
+    public class MIWidgetSteps
     {
         private const string DRIVER_DIR = @"C:\Automation\";
 
         //private readonly IWebDriver _driver;
         private IWebDriver _driver;
 
-        public MiwidgetSteps()
+        public MIWidgetSteps()
         {
             //_driver = new ChromeDriver(DRIVER_DIR);
             //_driver = new InternetExplorerDriver(DRIVER_DIR);
-
             _driver = new FirefoxDriver(DRIVER_DIR);
-
-
 
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             _driver.Manage().Window.Maximize();
@@ -75,10 +72,22 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
         [Then(@"I should not see a class with '(.*)'")]
         public void ThenIShouldNotSeeAClassWith(string p0)
         {
-            var q = _driver.FindElement(By.ClassName(p0));
-            Assert.IsNull(q);
+            var isElementPresent = IsElementPresent(By.ClassName(p0));
+            Assert.IsFalse(isElementPresent);
         }
 
-
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+                _driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
     }
 }
