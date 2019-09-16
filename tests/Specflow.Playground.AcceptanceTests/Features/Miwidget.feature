@@ -14,3 +14,14 @@ Scenario: Can click on all areas layer
 	Given I am on the miwidgets page
 	When I click on a text ' All Biotoxin Production Areas'
 	Then I should not see a class with 'map-info-title' 
+
+	
+Scenario: Can click on zoom
+	Given I am on the miwidgets page
+	When I click on a class 'leaflet-control-zoom-in'
+	Then I should able to see a style with 'scale(128)' 
+
+Scenario: Can click on zoom out
+	Given I am on the miwidgets page
+	When I click on a class 'leaflet-control-zoom-out'
+	Then I should see a style with 'scale(32)'

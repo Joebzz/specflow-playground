@@ -75,8 +75,22 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
             var isElementPresent = IsElementPresent(By.ClassName(p0));
             Assert.IsFalse(isElementPresent);
         }
+        [Then(@"I should able to see a style with '(.*)'")]
+        public void ThenIShouldAbleToSeeAStyleWith(string p0)
+        {
+            var zoomAnimated = _driver.FindElement(By.CssSelector(".leaflet-map-pane .leaflet-proxy.leaflet-zoom-animated"));
+            var style = zoomAnimated.GetAttribute("style");
+            Assert.IsTrue(style.Contains(p0));
+        }
+        [Then(@"I should see a style with '(.*)'")]
+        public void ThenIShouldSeeAStyleWith(string p0)
+        {
+            var zoomAnimated = _driver.FindElement(By.CssSelector(".leaflet-map-pane .leaflet-proxy.leaflet-zoom-animated"));
+            var style = zoomAnimated.GetAttribute("style");
+            Assert.IsTrue(style.Contains(p0));
+        }
 
-        private bool IsElementPresent(By by)
+        private bool IsElementPresent (By by)
         {
             try
             {
@@ -90,4 +104,7 @@ namespace Specflow.Playground.AcceptanceTests.StepDefinitions
             }
         }
     }
+
+
 }
+
